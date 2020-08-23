@@ -63,4 +63,3 @@ rails_admin
 cancancan
 kaminari
 ransack
-# g-work
