@@ -1,0 +1,59 @@
+<% if user_signed_in? && current_user.try(:admin?) %>
+<%= link_to "マイページ", my_page_path %>
+<%= link_to "新規投稿", new_article_path %>
+<%= link_to "管理者画面", rails_admin_path %>
+<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+<% elsif user_signed_in? %>
+<%= link_to "マイページ", my_page_path %>
+<%= link_to "新規投稿", new_article_path %>
+<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+<%# <%= link_to "新規登録", new_user_registration_path %>
+<%# <%= link_to "ログイン", new_user_session_path %>
+<% end %>
+<% if current_user.try(:admin?) %>
+  <h1>管理者用投稿一覧</h1>
+<% else %>
+  <h1>投稿一覧</h1>
+<% end %>
+
+<%= search_form_for @q do |f| %>
+  <%= f.label :title_or_content, "検索フォーム" %>
+  <%= f.search_field :title_or_content_cont %>
+  <%= f.submit "検索" %>
+<% end %>
+
+<%# <!-- <td><%= article.comments.size %></td>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">投稿者</th>
+      <th scope="col">タイトル</th>
+      <th scope="col">内容</th>
+      <th scope="col">画像</th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @articles.each do |article| %>
+    <tr>
+      <td><%= article.user.name %></td>
+      <td><%= article.title %></td>
+      <td><%= article.content %></td>
+      <td><%= image_tag article.image.url unless article.image.blank? %></td>
+      <td><button type="button" class="btn btn-default"><%= link_to '詳細', article_path(article.id) %></button></td>
+      <% if article.user.id == current_user.id %>
+      <td><button type="button" class="btn btn-default"><%= link_to "編集", edit_article_path(article.id) %></button></td>
+      <td><button type="button" class="btn btn-default"><%= link_to '削除', article_path(article.id), method: :delete %></button></td>
+      <% else %>
+      <% end %>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="pages">
+  <p class="page"><%= paginate @articles %></p>
+</div>
