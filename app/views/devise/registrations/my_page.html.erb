@@ -1,9 +1,0 @@
-<%= link_to "ユーザー情報編集", edit_user_registration_path %>
-<%= link_to '投稿一覧', articles_path %>
-<%= link_to '新規投稿', new_article_path %>
-<h3><%= image_tag(@user.profile_image, :size => '90x90', class: 'thumbnail') %></h3>
-<h3><strong>Name：<%=@user.name %></strong></h3>
-<h3><strong>E-mail：<%= @user.email %></strong></h3>
-<!-- <div class="rounded-circle"> -->
-<%# <%= image_tag @user.profile_image.variant(resize:'300x300').processed unless @user.profile_image.blank?%>
-<!-- </div> -->
