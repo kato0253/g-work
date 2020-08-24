@@ -1,0 +1,18 @@
+<%= link_to "マイページ", my_page_path %>
+<%= link_to "新規投稿", new_article_path %>
+<%= link_to '投稿一覧', articles_path %>
+<h1>お気に入り一覧</h1>
+<table>
+  <tr >
+    <th>タイトル</th>
+    <th>内容</th>
+    <th>画像</th>
+  </tr>
+<% @favorite.each do |favorite| %>
+<tr>
+  <td><%= favorite.article.title %></td>
+  <td><%= favorite.article.content %></td>
+  <td><%= image_tag favorite.article.image.url unless favorite.article.image.blank?%></td>
+</tr>
+<% end %>
+</table>

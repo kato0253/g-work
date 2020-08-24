@@ -7,6 +7,7 @@ class ArticlesController < ApplicationController
     @articles = @q.result(distinct: true).page(params[:page]).per(4)
   end
 
+
   def new
     @article = current_user.articles.build
   end
@@ -33,6 +34,7 @@ class ArticlesController < ApplicationController
     # @comment = Comment.new(article_params)
     # @comment.user_id = current_user.id
     @count = Favorite.where(article_id: @article.id).count
+    @user = current_user
   end
 
   def edit

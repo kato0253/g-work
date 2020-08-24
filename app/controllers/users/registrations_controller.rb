@@ -8,6 +8,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     @user = current_user
   end
 
+  def user_favorite
+    @favorite = Favorite.where(user_id: current_user.id)
+  end
   # def profile_update
   #   current_user.assign_attributes(account_update_params)
   #   if current_user.save

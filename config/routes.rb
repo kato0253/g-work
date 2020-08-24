@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
   get 'address/show'
   root to: 'other_pages#index'
 
@@ -9,6 +10,7 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     get 'my_page', to: 'users/registrations#my_page', as: 'my_page'
+    get  "user_favorite" , to: "users/registrations#user_favorite", as: 'user_favorite'
   end
 
   resources :favorites, only: [:create, :destroy]
