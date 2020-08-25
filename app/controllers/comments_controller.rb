@@ -10,10 +10,12 @@ class CommentsController < ApplicationController
     # クライアント要求に応じてフォーマットを変更
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to article_path(@article) }
-      else
-        format.html { redirect_to article_path(@article), notice: '投稿できませんでした...' }
-      end
+          flash.now[:notice] = 'コメントが投稿されました'
+          format.js { render :index }
+        else
+          flash.now[:notice] = 'コメントの投稿に失敗しました'
+          format.js { render :index }
+        end
     end
   end
   def edit
