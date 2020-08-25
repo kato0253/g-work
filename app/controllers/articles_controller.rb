@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
+  before_action :correct_user, only:[:edit, :update, :destroy]
 
   def index
     @articles = Article.all.page(params[:page]).per(4)
@@ -68,4 +69,11 @@ class ArticlesController < ApplicationController
     params.require(:article).permit(:title, :content , :id, :image, :image_cache)
   end
 
+  def correct_user
+    @article = Article.find(params[:id])
+    if current_user.id != @article.user_id
+      flash[:notice] = "権限がありません"
+      redirect_to articles_path
+    end
+  end
 end
