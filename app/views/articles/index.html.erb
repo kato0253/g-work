@@ -18,7 +18,7 @@
 <% end %>
 
 <%= search_form_for @q do |f| %>
-  <%= f.label :title_or_content, "検索フォーム" %>
+  <%= f.label :title_or_content_or_user_name, "検索フォーム" %>
   <%= f.search_field :title_or_content_or_user_name_cont %>
   <%= f.submit "検索" %>
 <% end %>
