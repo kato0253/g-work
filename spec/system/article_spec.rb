@@ -13,7 +13,7 @@ RSpec.describe '​記事投稿機能', type: :system do
   # 　click_on '登録'
   # 　expect(page).to have_content '作成'
   #   end
-scenario "記事投稿テスト" do
+    scenario "記事投稿テスト" do
     @user1 = FactoryBot.create(:user)
     @user2 = FactoryBot.create(:admin_user)
 
@@ -23,14 +23,12 @@ scenario "記事投稿テスト" do
     fill_in 'user_email', with: "sample10@example.com"
     fill_in 'user_password', with: "00000000"
     click_on '送信'
-
-
     visit articles_path
     click_link '新規投稿'
-    fill_in 'article[title]', with: 'rsepec1'
-    fill_in 'article[content]', with: 'rspec2'
+    fill_in "article[title]", with: 'rspec1'
+    fill_in "article[content]", with: 'rspec2'
     click_on '登録'
-    expect(page).to have_content 'rsepec1'
+    expect(page).to have_content 'rspec1'
     expect(page).to have_content 'rspec2'
 end
 scenario "マイページ遷移テスト" do
@@ -116,6 +114,5 @@ scenario "お気に入りリンク機能テスト" do
   click_link 'お気に入り一覧'
   click_on 'rsepec3'
   expect(page).to have_content '詳細画面'
-  save_and_open_page
 end
 end
