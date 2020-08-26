@@ -81,6 +81,16 @@ RSpec.describe '​ユーザ登録・ログイン・ログアウト機能​・�
         expect(page).to have_content "You are not authorized"
       end
     end
+  end
+end
+
+# RSpec.describe '​', type: :system do
+#
+#
+#
+#
+#
+# end
     # context "管理者でログインしている場合" do
     #   before {
     #     FactoryBot.create(:admin_user)
@@ -121,5 +131,3 @@ RSpec.describe '​ユーザ登録・ログイン・ログアウト機能​・�
   #       expect(page).to have_content "ユーザーの作成に成功しました"
   #     end
   #   end
-  end
-end

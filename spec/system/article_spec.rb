@@ -116,3 +116,35 @@ scenario "お気に入りリンク機能テスト" do
   expect(page).to have_content '詳細画面'
 end
 end
+RSpec.describe '​コメント投稿・編集機能', type: :system do
+scenario "コメント投稿" do
+  @a = FactoryBot.create(:user,name:'a',email:"sample101@example.com",password:"00000000")
+  @b = FactoryBot.create(:user,id: 30,name:'b',email:"sampleb@example.com",password:"00000000")
+  FactoryBot.create(:article, id: 26 ,title:"rsepec3", content: "rspec4",user: @b)
+  visit user_session_path
+  fill_in 'user_email', with: "sample101@example.com"
+  fill_in 'user_password', with: "00000000"
+  click_on '送信'
+  visit articles_path
+  click_link '詳細', match: :first
+  fill_in 'comment[content]', with: "a"
+  click_on '登録する'
+end
+scenario "コメント編集" do
+  @a = FactoryBot.create(:user,name:'a',email:"sample101@example.com",password:"00000000")
+  @b = FactoryBot.create(:user,id: 30,name:'b',email:"sampleb@example.com",password:"00000000")
+  @c = FactoryBot.create(:article, id: 26 ,title:"rsepec3", content: "rspec4",user: @b)
+  FactoryBot.create(:comment, content: "a", user: @a, article:@c)
+  visit user_session_path
+  fill_in 'user_email', with: "sample101@example.com"
+  fill_in 'user_password', with: "00000000"
+  click_on '送信'
+  visit articles_path
+  click_link '詳細', match: :first
+  fill_in 'comment[content]', with: "a"
+  click_on '登録する'
+  # visit edit_article_path(:id)
+  save_and_open_page
+  click_on 'コメント編集', match: :first
+end
+end
