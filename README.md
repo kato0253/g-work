@@ -64,3 +64,4 @@ cancancan
 kaminari
 ransack
 # chat
+# chat
