@@ -65,3 +65,4 @@ kaminari
 ransack
 # chat
 # chat
+# chat
