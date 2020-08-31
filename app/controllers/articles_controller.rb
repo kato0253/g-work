@@ -15,6 +15,8 @@ class ArticlesController < ApplicationController
 
   def create
     @article = current_user.articles.build(article_params)
+    @comment = @article.comments.build(:params)
+    @comment.user_id = current_user.id
     if params[:back]
       render :new
     else
